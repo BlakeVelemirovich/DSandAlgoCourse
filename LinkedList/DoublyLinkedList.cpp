@@ -42,8 +42,13 @@ public:
         }
     }
 
-    void insertNewNodeAtStart() {
+    void insertNewNodeAtStart(int value) {
+        Node* newNode = new Node(value);
+
+        if (head != nullptr) head->prev = newNode;
         
+        newNode->next = head;
+        head = newNode;
     }
 
     void traverse() {
