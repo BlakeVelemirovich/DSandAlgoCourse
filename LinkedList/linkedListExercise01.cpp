@@ -17,6 +17,17 @@ public:
   // Constructor to initialize the head to NULL
   LinkedList() : head(nullptr) {}
 
+  // Deconstructor
+  ~LinkedList() {
+    Node* curNode = head;
+
+    while(curNode != nullptr) {
+      Node* temp = curNode;
+      curNode - curNode->next;
+      delete temp;
+    }
+  }
+
   // Insert a node at the start of the list
   void insertAtStart(int value) {
     Node* newNode = new Node(); 
