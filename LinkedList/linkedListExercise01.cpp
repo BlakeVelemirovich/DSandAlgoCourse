@@ -48,20 +48,36 @@ public:
     }
     cout << endl;               
   }
+
+  Node* findMidPoint() {
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != nullptr && fast->next != nullptr) {
+      slow = slow->next;
+      fast = fast->next->next;
+    }
+
+    cout << "Mid point: " << slow->value << endl;
+
+    return fast;
+  }
 };
 
 int main() {
   LinkedList* linkedList = new LinkedList();
 
-  int numOne = 1;
-  int numTwo = 34;
-  int numThree = 40;
+  int nums[10] = {5, 7, 22, 1, 3, 9, 8, 11, 14, 18};
+  int numsLength = sizeof(nums) / sizeof(nums[0]);
 
-  linkedList->insertAtStart(numOne); 
-  linkedList->insertAtEnd(numTwo); 
-  linkedList->insertAtEnd(numThree);
+  for (int i = 0; i < numsLength; i++) {
+    if (i == 0) linkedList->insertAtStart(nums[i]);
+    else linkedList->insertAtEnd(nums[i]);
+  }
 
   linkedList->traverse();
+
+  Node* midPoint = linkedList->findMidPoint();
 
   delete linkedList; 
 
