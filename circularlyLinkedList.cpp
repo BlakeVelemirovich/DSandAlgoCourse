@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 // Define the structure of a node in the circular linked list
@@ -12,10 +13,9 @@ struct Node {
 // Circular Linked List class
 class CircularLinkedList {
 private:
-    Node* head; // Pointer to the head of the list
+    Node* head;
 
 public:
-    // Constructor to initialize an empty list
     CircularLinkedList() : head(nullptr) {}
 
     // Destructor to clean up memory
@@ -35,7 +35,7 @@ public:
         head = nullptr;
     }
 
-    // Function to insert a node at a specific position
+
     void insertAtPosition(int value, int position) {
         Node* newNode = new Node(value);
 
@@ -56,7 +56,7 @@ public:
                 temp = temp->next;
             }
             temp->next = newNode;
-            head = newNode; // Update the head
+            head = newNode; 
             cout << "Node inserted at the head." << endl;
             return;
         }
@@ -75,7 +75,7 @@ public:
         cout << "Node inserted at position " << position << "." << endl;
     }
 
-    // Function to display the circular linked list
+
     void displayList() const {
         if (head == nullptr) {
             cout << "The list is empty." << endl;
@@ -93,7 +93,7 @@ public:
 };
 
 int main() {
-    CircularLinkedList list; // Create an instance of the circular linked list
+    CircularLinkedList list;
 
     // Insert elements at specific positions
     list.insertAtPosition(10, 0); // Insert at head
@@ -101,7 +101,6 @@ int main() {
     list.insertAtPosition(30, 1); // Insert at position 1
     list.insertAtPosition(40, 3); // Insert at position 3
 
-    // Display the circular linked list
     list.displayList();
 
     return 0;
