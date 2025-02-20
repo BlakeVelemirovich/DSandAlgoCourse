@@ -2,13 +2,11 @@
 
 using namespace std;
 
-// Define the structure of a node in the circular linked list
 struct Node {
     int data;
     Node* next;
 };
 
-// Function to create a new node
 Node* createNode(int value) {
     Node* newNode = new Node();
     newNode->data = value;
@@ -16,7 +14,6 @@ Node* createNode(int value) {
     return newNode;
 }
 
-// Function to insert a node at a specific position in the circular linked list
 void insertAtPosition(Node*& head, int value, int position) {
     Node* newNode = createNode(value);
 
@@ -42,7 +39,7 @@ void insertAtPosition(Node*& head, int value, int position) {
         return;
     }
 
-    // Traverse to the node just before the desired position
+    // Traverse to the node just before the position
     Node* temp = head;
     int currentPosition = 0;
     while (currentPosition < position - 1 && temp->next != head) {
@@ -56,7 +53,6 @@ void insertAtPosition(Node*& head, int value, int position) {
     cout << "Node inserted at position " << position << "." << endl;
 }
 
-// Function to display the circular linked list
 void displayList(Node* head) {
     if (head == nullptr) {
         cout << "The list is empty." << endl;
@@ -73,7 +69,7 @@ void displayList(Node* head) {
 }
 
 int main() {
-    Node* head = nullptr; // Initialize an empty circular linked list
+    Node* head = nullptr;
 
     // Insert elements at specific positions
     insertAtPosition(head, 10, 0); // Insert at head
@@ -81,7 +77,6 @@ int main() {
     insertAtPosition(head, 30, 1); // Insert at position 1
     insertAtPosition(head, 40, 3); // Insert at position 3
 
-    // Display the circular linked list
     displayList(head);
 
     return 0;
