@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// Define a Node struct to represent each element in the doubly linked list
 // Use templates to make the Node generic (can store any data type)
 template <typename T>
 struct Node {
