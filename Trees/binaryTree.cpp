@@ -12,6 +12,14 @@ public:
         data = value;
         left = right = nullptr;
     }
+
+    void traverseNodeDisplay(TreeNode* node) {
+        if (node == nullptr) return;
+
+        traverseNodeDisplay(node->left);
+        traverseNodeDisplay(node->right); 
+        cout << "Data: " << node->data;
+    }
 };
 
 int main() {
@@ -23,6 +31,8 @@ int main() {
     root->left->right = new TreeNode(5);
     root->right->left = new TreeNode(6);
     root->right->right = new TreeNode(7);
+
+    root->traverseNodeDisplay(root);
 
     return 0;
 }
