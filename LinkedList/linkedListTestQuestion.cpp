@@ -30,19 +30,24 @@ public:
 
   // Insert a set of numbers
   void insertSet(int *arr, int len ) {
+    // Create curNode that we will use to traverse through the linked list without modifying our head
     Node* curNode = head;
     
+    // Check if we have any valuse in the list before trying to traverse a nullptr
     if (head != nullptr) {
       while (curNode->next != nullptr) {
         curNode = curNode->next;
       }
     }
 
+    // Iterate through the entire input array
     for (int i = 0; i < len; i++) {
+      // New node with input value
       Node* newNode = new Node();
       newNode->value = arr[i];
       newNode->next = nullptr;
 
+      // Check to see if the head node is a nullptr, if it is we need to set the head to the first value
       if (curNode == nullptr) {
         curNode = newNode;
         head = curNode;
@@ -51,7 +56,30 @@ public:
         curNode = curNode->next;
       }
     }
-}
+  }
+
+  // Find the element at a specific position
+  void findElementAtPosition(int position) {
+    if (head == nullptr) {
+      cout << "The list is empty, please insert values and try again.";
+      return;
+    }
+    
+    Node* curNode = head;
+    // Iterate through the nodes and stop when counter is equal to position
+    for (int i = 0; i < position; i++) {
+      curNode = curNode->next;
+
+      // If curNode is nullptr, then we do not have a big enough list to accomdate the request, as we ran out of nodes.
+      if (curNode == nullptr) {
+        cout << "The list is not big enough yet to accomdate request, enter smaller position or add new elements";
+        cout << endl << "Current size is: " << i;
+        return;
+      }
+    }
+
+    cout << "The value at position: " << position << " is: " << curNode->value << endl;
+  }
 
   // Insert a node at the start of the list
   void insertAtStart(int value) {
@@ -118,6 +146,7 @@ public:
 int main() {
   LinkedList* linkedList = new LinkedList();
 
+  // Demonstration of adding a set of numbers to the linked list
   int nums[10] = {5, 7, 22, 1, 3, 9, 8, 11, 14, 18};
   int numsLength = sizeof(nums) / sizeof(nums[0]);
 
@@ -130,6 +159,13 @@ int main() {
 
   linkedList->traverse();
 
+  // Demonstration of finding a value at a specific index
+  linkedList->findElementAtPosition(3);
+
+  // Demonstration of error checking if list isn't big enough to handle request
+  linkedList->findElementAtPosition(30);
+
+  // Free memory
   delete linkedList; 
 
   return 0;
