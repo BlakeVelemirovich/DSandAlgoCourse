@@ -2,7 +2,20 @@
 
 using namespace std;
 
+struct Node {
+    int value;
+    Node* next;
+    
+    Node(int value) : value(value) {}
+};
+
+class Stack {
+
+};
+
 class TreeNode {
+private:
+    displayStack
 public:
     int data;
     TreeNode* left;
