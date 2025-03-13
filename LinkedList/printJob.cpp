@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// Node structure
+// Node structures
 struct Node {
     int data;
     Node* next;
