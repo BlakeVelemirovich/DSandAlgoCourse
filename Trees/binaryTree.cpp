@@ -1,51 +1,85 @@
 #include <iostream>
-
 using namespace std;
 
 struct Node {
-    int value;
-    Node* next;
-    
-    Node(int value) : value(value) {}
-};
-
-class Stack {
-
-};
-
-class TreeNode {
-private:
-    displayStack
-public:
     int data;
-    TreeNode* left;
-    TreeNode* right;
+    Node* left;
+    Node* right;
 
-    TreeNode(int value) {
-        data = value;
-        left = right = nullptr;
+    Node(int value) : data(value), left(nullptr), right(nullptr) {}
+};
+
+class BinaryTree {
+public:
+    BinaryTree() : root(nullptr) {}
+
+    void insert(int value) {
+        root = insertRec(root, value);
     }
 
-    void traverseNodeDisplay(TreeNode* node) {
-        if (node == nullptr) return;
+    void preorder() {
+        preorderRec(root);
+        cout << endl;
+    }
 
-        traverseNodeDisplay(node->left);
-        traverseNodeDisplay(node->right); 
-        cout << "Data: " << node->data;
+    void postorder() {
+        postorderRec(root);
+        cout << endl;
+    }
+
+private:
+    Node* root;
+
+    Node* insertRec(Node* node, int value) {
+        if (node == nullptr) {
+            return new Node(value);
+        }
+
+        if (value < node->data) {
+            node->left = insertRec(node->left, value);
+        } else {
+            node->right = insertRec(node->right, value);
+        }
+
+        return node;
+    }
+
+    void preorderRec(Node* node) {
+        if (node == nullptr) {
+            return;
+        }
+
+        cout << node->data << " ";
+        preorderRec(node->left);
+        preorderRec(node->right);
+    }
+
+    void postorderRec(Node* node) {
+        if (node == nullptr) {
+            return;
+        }
+
+        postorderRec(node->left);
+        postorderRec(node->right);
+        cout << node->data << " ";
     }
 };
 
 int main() {
+    BinaryTree tree;
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(15);
+    tree.insert(3);
+    tree.insert(7);
+    tree.insert(12);
+    tree.insert(18);
 
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-    root->right->left = new TreeNode(6);
-    root->right->right = new TreeNode(7);
+    cout << "Preorder traversal: ";
+    tree.preorder();
 
-    root->traverseNodeDisplay(root);
+    cout << "Postorder traversal: ";
+    tree.postorder();
 
     return 0;
 }
