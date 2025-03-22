@@ -3,7 +3,7 @@
 using namespace std;
 
 bool isPalindrome(const string& str, int left, int right) {
-    // Base case: when left >= right, the string is a palindrome
+    // Base case: when left equals right, the string is a palindrome because if we reach the end without termination every character equals the others
     if (left >= right) {
         return true;
     }
@@ -11,13 +11,13 @@ bool isPalindrome(const string& str, int left, int right) {
     if (str[left] != str[right]) {
         return false;
     }
-    // Recursively check the substring between left+1 and right-1
+    // Recursively check the substring by providing the next value on the left side (left + 1) and the next value on the right side (right - 1) as arguments
     return isPalindrome(str, left + 1, right - 1);
 }
 
 int main() {
     string input;
-    cout << "Enter a string: ";
+    cout << "Enter a word (no spaces): ";
     cin >> input;
 
     if (isPalindrome(input, 0, input.length() - 1)) {
